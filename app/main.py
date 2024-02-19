@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from database import create_db_and_tables 
+from database import create_db_and_tables
+from models import User
 
 app = FastAPI()
 
@@ -10,12 +11,12 @@ def on_startup():
     create_db_and_tables()
 
 @app.post("/register")
-async def register( username, password):
-    return {"username": username, "password": password}
+async def register( user: User):
+    return {"username": user.username, "password": user.password_hash}
 
 @app.post("/signin")
-async def signin( username, password):
-    return {"username": username, "password": password}
+async def signin( user: User):
+    return {"username": user.username, "password": user.password_hash}
 
 @app.delete("/user")
 async def delete_user():
