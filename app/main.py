@@ -3,8 +3,8 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, status
 from database import create_db_and_tables, engine
 from sqlmodel import Session, select
-from pydantic import BaseModel
 from models import User
+from schemas.token import Token, TokenData
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -15,15 +15,6 @@ app = FastAPI()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="signin")
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-
-class TokenData(BaseModel):
-    username: str | None = None
-
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
