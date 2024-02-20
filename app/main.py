@@ -8,7 +8,7 @@ from models import User
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from config import Settings
+from configurations import Settings
 
 settings = Settings()
 app = FastAPI()
