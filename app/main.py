@@ -1,11 +1,15 @@
-from fastapi import FastAPI
+from typing import Annotated
+from fastapi import FastAPI, Depends
 from database import create_db_and_tables, engine
 from sqlmodel import Session, select
 from models import User
 from passlib.context import CryptContext
+from fastapi.security import OAuth2PasswordBearer
+
 
 app = FastAPI()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -38,5 +42,5 @@ async def signin( user: User):
             return user
 
 @app.delete("/user")
-async def delete_user():
+async def delete_user(token: Annotated[str, Depends(oauth2_scheme)]):
     print(" current_user needs to be retrevied and deleted") 
