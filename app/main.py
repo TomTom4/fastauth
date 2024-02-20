@@ -32,10 +32,10 @@ async def register( user: User):
 @app.post("/signin")
 async def signin( user: User):
     with Session(engine) as session:
-        statement = select(User).where(User.username == user.username,
-                                       User.password_hash == user.password_hash)
-        user = session.exec(statement).first()
-    return user 
+        statement = select(User).where(User.username == user.username)
+        db_user = session.exec(statement).first()
+        if verify_password(user.password_hash, db_user.password_hash):
+            return user
 
 @app.delete("/user")
 async def delete_user():
