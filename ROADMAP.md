@@ -15,6 +15,6 @@ By the end of this milestone, we should have a basic username and password authe
 server.
 it should provide:
 
- - [ ] a register endpoint to register with a username and password
- - [ ] a signin endpoint to get the access token.
+ - [x] a register endpoint to register with a username and password
+ - [x] a signin endpoint to get the access token.
  - [ ] a delete account endpoint for account deletion. 
