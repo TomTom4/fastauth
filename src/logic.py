@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
-from app.configurations import Settings
 from passlib.context import CryptContext
 from jose import JWTError, jwt
+from src.configurations import Settings
 
 settings = Settings()
 

@@ -4,12 +4,12 @@ from sqlmodel import Session, select
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError
 from datetime import timedelta, timezone
-from app.database import create_db_and_tables, engine
-from app.dependencies import get_current_user
-from app.models import User
-from app.schemas import Token, TokenData
-from app.logic import create_access_token, verify_password, get_password_hash
-from app.configurations import Settings
+from src.database import create_db_and_tables, engine
+from src.dependencies import get_current_user
+from src.models import User
+from src.schemas import Token, TokenData
+from src.logic import create_access_token, verify_password, get_password_hash
+from src.configurations import Settings
 
 settings = Settings()
 app = FastAPI()
