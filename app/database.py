@@ -11,4 +11,3 @@ engine = create_engine(settings.database_url, echo=True, connect_args=connect_ar
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
-
