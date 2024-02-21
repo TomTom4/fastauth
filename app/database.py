@@ -1,6 +1,6 @@
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-import models
-from configurations import Settings
+import app.models
+from app.configurations import Settings
 
 settings = Settings()
 

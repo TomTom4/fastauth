@@ -1,7 +1,7 @@
 from typing import Annotated
-from logic import decode_token
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from app.logic import decode_token
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="signin")
 

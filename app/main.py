@@ -1,15 +1,15 @@
-from datetime import timedelta, timezone
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from database import create_db_and_tables, engine
 from sqlmodel import Session, select
-from dependencies import get_current_user
-from models import User
-from schemas import Token, TokenData
-from logic import create_access_token, verify_password, get_password_hash
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError
-from configurations import Settings
+from datetime import timedelta, timezone
+from app.database import create_db_and_tables, engine
+from app.dependencies import get_current_user
+from app.models import User
+from app.schemas import Token, TokenData
+from app.logic import create_access_token, verify_password, get_password_hash
+from app.configurations import Settings
 
 settings = Settings()
 app = FastAPI()
