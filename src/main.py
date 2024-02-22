@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
 from fastapi import Depends, FastAPI
 from sqlmodel import Session, select
@@ -11,12 +12,15 @@ from src.logic import create_access_token, verify_password, get_password_hash
 from src.configurations import Settings
 
 settings: Settings = Settings()
-app = FastAPI()
 
 
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     create_db_and_tables()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/register")
