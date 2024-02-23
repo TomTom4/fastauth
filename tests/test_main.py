@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 from src.main import app
 from src.dependencies import get_session
-from sqlmodel import Session, create_engine
+from sqlmodel import Session, create_engine, SQLModel
 from sqlmodel.pool import StaticPool
 
 
@@ -13,6 +13,7 @@ def session_fixture():
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
+    SQLModel.metadata.create_all(engine)
     with Session(engine) as session:
         yield session
 
