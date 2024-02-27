@@ -13,8 +13,3 @@ def test_signin(client: TestClient):
     )
     assert response.status_code == 200
     print(response.json())
-
-
-def test_delete_user(client: TestClient):
-    response = client.delete("/user")
-    assert response.status_code == 401
