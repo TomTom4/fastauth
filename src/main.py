@@ -1,7 +1,8 @@
 from contextlib import asynccontextmanager
 from typing import Annotated
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from sqlmodel import Session, select
+from sqlalchemy.exc import IntegrityError
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
 from src.database import create_db_and_tables
@@ -27,10 +28,13 @@ app = FastAPI(lifespan=lifespan)
 async def register(user: User, session: Annotated[Session, Depends(get_session)]):
     hashed_password = get_password_hash(user.password_hash)
     user.password_hash = hashed_password
-    session.add(user)
-    session.commit()
-    session.refresh(user)
-    return user
+    try:
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+        return user
+    except IntegrityError:
+        raise HTTPException(status_code=409, detail="User already exists")
 
 
 @app.post("/signin")
