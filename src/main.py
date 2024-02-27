@@ -53,5 +53,10 @@ async def signin(
 
 
 @app.delete("/user")
-async def delete_user(current_user: Annotated[User, Depends(get_current_user)]):
+async def delete_user(
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+):
+    session.delete(current_user)
+    session.commit()
     return current_user
