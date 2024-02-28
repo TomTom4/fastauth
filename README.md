@@ -6,10 +6,10 @@ a free authentication and authorization server
 
 ```bash
 # generate a private key
-openssl ecparam -name secp521r1 -genkey -noout -out ec-p512-private.pem
+openssl ecparam -name secp521r1 -genkey -noout -out private.pem
 
 # extract the public key
-openssl ec -in ec-p512-private.pem -pubout -out ec-p512-public.pem
+openssl ec -in private.pem -pubout -out public.pem
 ```
 
 # start
