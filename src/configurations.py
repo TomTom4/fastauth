@@ -3,7 +3,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    secret_key: str = Field(default="", description="secret_key")
+    private_key: str = Field(default="", description="private key")
+    public_key: str = Field(default="", description="public key")
     algorithm: str = Field(
         default="", description="chosen algorithm for jwt encryption"
     )
