@@ -24,6 +24,11 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
+@app.get("/.well-known/jwks.json")
+async def get_jwks():
+    pass
+
+
 @app.post("/register")
 async def register(user: User, session: Annotated[Session, Depends(get_session)]):
     hashed_password = get_password_hash(user.password_hash)
