@@ -11,13 +11,11 @@ features cited below, then consider visiting [superToken]("https://supertokens.c
 or [fastapi-users]("https://github.com/fastapi-users/fastapi-users?tab=readme-ov-file#in-a-hurry-discover-fief-the-open-source-authentication-platform")
 
 ## Ressource
+list of interesting ressources used to build this piece of software:
 
-list of interesting ressources to build the software:
-    - fastapi 
-    - sqlmodel
-    - pydantic
-    - [JWK and JWKS specification]("https://datatracker.ietf.org/doc/html/rfc7517")
-    - [Oauth2 specification](https://datatracker.ietf.org/doc/html/rfc6749)
-    - [Bearer Token specification](https://datatracker.ietf.org/doc/html/rfc6750)
-
-
+- fastapi 
+- sqlmodel
+- pydantic
+- [JWK and JWKS specification]("https://datatracker.ietf.org/doc/html/rfc7517")
+- [Oauth2 specification](https://datatracker.ietf.org/doc/html/rfc6749)
+- [Bearer Token specification](https://datatracker.ietf.org/doc/html/rfc6750)
