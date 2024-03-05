@@ -1,17 +1,23 @@
-# Welcome to MkDocs
+# Welcome to FreeAuth 
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Introduction
+This project is an attempt to implement the [Oauth2 standard](https://datatracker.ietf.org/doc/html/rfc6749),
+and its [Bearer Token specification](https://datatracker.ietf.org/doc/html/rfc6750).
+It aim to provide a simple solution to those who might be interested into a free self 
+hosted auth server.
 
-## Commands
+> If you are looking fore a production ready open source  project that provide all the
+features cited below, then consider visiting [superToken]("https://supertokens.com/").
+or [fastapi-users]("https://github.com/fastapi-users/fastapi-users?tab=readme-ov-file#in-a-hurry-discover-fief-the-open-source-authentication-platform")
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Ressource
 
-## Project layout
+list of interesting ressources to build the software:
+    - fastapi 
+    - sqlmodel
+    - pydantic
+    - [JWK and JWKS specification]("https://datatracker.ietf.org/doc/html/rfc7517")
+    - [Oauth2 specification](https://datatracker.ietf.org/doc/html/rfc6749)
+    - [Bearer Token specification](https://datatracker.ietf.org/doc/html/rfc6750)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+

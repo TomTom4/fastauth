@@ -1,2 +1,5 @@
 site_name: Free Auth (FastAuth?)
-theme: material
+theme: 
+  name: material
+  palette:
+    primary: amber
