@@ -1,13 +1,24 @@
-from typing import Optional, List
+from typing import Optional, List, Literal
 from pydantic import BaseModel, HttpUrl, Field
 
 
 class JWK(BaseModel):
-    kty: str
-    use: Optional[str]
-    key_ops: Optional[str]
-    alg: Optional[str]
-    kid: Optional[str]
+    kty: Literal["RSA", "EC"] = "RSA"
+    use: Literal["sig", "enc"] = "sig"
+    key_ops: Optional[
+        Literal[
+            "sign",
+            "verify",
+            "encrypt",
+            "decrypt",
+            "wrapKey",
+            "unwrapKey",
+            "deriveKey",
+            "deriveBits",
+        ]
+    ] = None
+    alg: Optional[str] = None
+    kid: Optional[str] = 
     x5u: Optional[HttpUrl]
     x5c: Optional[str]
     x5t: Optional[str]
