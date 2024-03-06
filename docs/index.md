@@ -16,6 +16,6 @@ list of interesting ressources used to build this piece of software:
 - fastapi 
 - sqlmodel
 - pydantic
-- [JWK and JWKS specification]("https://datatracker.ietf.org/doc/html/rfc7517")
+- [JWK and JWKS specification](https://datatracker.ietf.org/doc/html/rfc7517)
 - [Oauth2 specification](https://datatracker.ietf.org/doc/html/rfc6749)
 - [Bearer Token specification](https://datatracker.ietf.org/doc/html/rfc6750)
