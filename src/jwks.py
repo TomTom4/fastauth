@@ -25,5 +25,32 @@ class JWK(BaseModel):
     x5tS256: Optional[str] = Field(default=None, alias="x5t#256")
 
 
+class ECJWK(JWK):
+    kty = "EC"
+    crv: Literal["P-256", "P-384", "P-521"]
+    x: str
+    y: Optional[str] = None
+
+
+class PrivateECJWK(ECJWK):
+    d: str
+
+
+class RSAJWK(JWK):
+    kty = "RSA"
+    n: str
+    e: str
+
+
+class PrivateRSAJWK(RSAJWK):
+    d: str
+    p: str
+    q: str
+    dp: str
+    dq: str
+    qi: str
+    oth: str
+
+
 class JWKS(BaseModel):
     keys: List[JWK]
