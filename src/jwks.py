@@ -3,7 +3,6 @@ from pydantic import BaseModel, HttpUrl, Field
 
 
 class JWK(BaseModel):
-    kty: Literal["RSA", "EC"] = "RSA"
     use: Literal["sig", "enc"] = "sig"
     key_ops: Optional[
         Literal[
@@ -25,19 +24,19 @@ class JWK(BaseModel):
     x5tS256: Optional[str] = Field(default=None, alias="x5t#256")
 
 
-class ECJWK(JWK):
-    kty = "EC"
+class ElipticCurveJWK(JWK):
+    kty: Literal["EC"] = "EC"
     crv: Literal["P-256", "P-384", "P-521"]
     x: str
     y: Optional[str] = None
 
 
-class PrivateECJWK(ECJWK):
+class PrivateElipticCurveJWK(ElipticCurveJWK):
     d: str
 
 
 class RSAJWK(JWK):
-    kty = "RSA"
+    kty: Literal["RSA"] = "RSA"
     n: str
     e: str
 
