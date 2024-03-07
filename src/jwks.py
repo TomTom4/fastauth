@@ -3,7 +3,7 @@ from pydantic import BaseModel, HttpUrl, Field
 
 
 class JWK(BaseModel):
-    use: Literal["sig", "enc"] = "sig"
+    use: Optional[Literal["sig", "enc"]] = None
     key_ops: Optional[
         Literal[
             "sign",
