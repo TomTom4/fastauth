@@ -18,11 +18,11 @@ class JWK(BaseModel):
         ]
     ] = None
     alg: Optional[str] = None
-    kid: Optional[str] = 
-    x5u: Optional[HttpUrl]
-    x5c: Optional[str]
-    x5t: Optional[str]
-    x5tS256: Optional[str] = Field(alias="x5t#256")
+    kid: Optional[str] = None
+    x5u: Optional[HttpUrl] = None
+    x5c: Optional[str] = None
+    x5t: Optional[str] = None
+    x5tS256: Optional[str] = Field(default=None, alias="x5t#256")
 
 
 class JWKS(BaseModel):
