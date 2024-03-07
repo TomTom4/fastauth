@@ -1,4 +1,4 @@
-from src.jwks import ElipticCurveJWK
+from src.jwks import ElipticCurveJWK, RSAJWK
 
 
 def test_public_jwk_asymetric_algorithm():
@@ -21,10 +21,30 @@ def test_public_jwk_asymetric_algorithm():
 
 
 def test_public_jwk_symetric_algorithm():
-    example_key = {}
-    symetric_jwk = None
-    # TODO: implement test
-    assert symetric_jwk == example_key
+    example_key = {
+        "kty": "RSA",
+        "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx\
+     4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMs\
+     tn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2\
+     QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbI\
+     SD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqb\
+     w0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
+        "e": "AQAB",
+        "alg": "RS256",
+        "kid": "2011-04-29",
+    }
+    symetric_jwk = RSAJWK(
+        n="0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx\
+     4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMs\
+     tn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2\
+     QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbI\
+     SD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqb\
+     w0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
+        e="AQAB",
+        alg="RS256",
+        kid="2011-04-29",
+    )
+    assert symetric_jwk.model_dump(exclude_none=True) == example_key
 
 
 def test_public_jwks():
