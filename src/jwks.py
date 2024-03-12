@@ -1,4 +1,4 @@
-from typing import Optional, List, Literal
+from typing import Optional, List, Literal, Union
 from pydantic import BaseModel, HttpUrl, Field
 
 
@@ -52,4 +52,4 @@ class PrivateRSAJWK(RSAJWK):
 
 
 class JWKS(BaseModel):
-    keys: List[JWK]
+    keys: List[Union[ElipticCurveJWK, PrivateElipticCurveJWK, RSAJWK, PrivateRSAJWK]]
