@@ -1,4 +1,4 @@
-from src.jwks import ElipticCurveJWK, RSAJWK, JWKS
+from src.jwks import ElipticCurveJWK, RSAJWK, JWKS, build_jwk
 
 
 def test_public_jwk_asymetric_algorithm():
@@ -94,3 +94,8 @@ def test_public_jwks():
     jwk_set = JWKS(keys=[asymetric_jwk, symetric_jwk])
 
     assert jwk_set.model_dump(exclude_none=True) == example_set
+
+
+def test_build_eliptic_curve_jwk():
+    jwk = build_jwk()
+    assert jwk

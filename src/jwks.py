@@ -1,5 +1,6 @@
 from typing import Optional, List, Literal, Union
 from pydantic import BaseModel, HttpUrl, Field
+from jwcrypto import jwk
 
 
 class JWK(BaseModel):
@@ -53,3 +54,11 @@ class PrivateRSAJWK(RSAJWK):
 
 class JWKS(BaseModel):
     keys: List[Union[ElipticCurveJWK, PrivateElipticCurveJWK, RSAJWK, PrivateRSAJWK]]
+
+
+def build_jwk():
+    with open("public.pem", "rb") as pemfile:
+        key = jwk.JWK.from_pem(pemfile.read())
+    dict_key: dict = key.export()
+    print(dict_key)
+    return ElipticCurveJWK.model_validate(dict_key)
