@@ -57,8 +57,12 @@ class JWKS(BaseModel):
     keys: List[Union[ElipticCurveJWK, PrivateElipticCurveJWK, RSAJWK, PrivateRSAJWK]]
 
 
-def build_jwk():
+def build_jwks() -> JWKS:
     with open("public.pem", "rb") as pemfile:
         key = jwk.JWK.from_pem(pemfile.read())
-    dict_key: dict = json.loads(key.export())
-    return ElipticCurveJWK.model_validate(dict_key)
+    eliptic_jwk: ElipticCurveJWK = ElipticCurveJWK.model_validate(
+        json.loads(key.export())
+    )
+    jwks: JWKS = JWKS(keys=[eliptic_jwk])
+    return jwks
+    return jwks

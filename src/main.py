@@ -11,6 +11,7 @@ from src.models import User
 from src.schemas import Token
 from src.logic import create_access_token, verify_password, get_password_hash
 from src.configurations import Settings
+from src.jwks import JWKS, build_jwks
 
 settings: Settings = Settings()
 
@@ -26,7 +27,8 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get("/.well-known/jwks.json")
 async def get_jwks():
-    pass
+    jwks: JWKS = build_jwks()
+    return jwks
 
 
 @app.post("/register")
