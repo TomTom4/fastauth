@@ -65,4 +65,3 @@ def build_jwks() -> JWKS:
     )
     jwks: JWKS = JWKS(keys=[eliptic_jwk])
     return jwks
-    return jwks
