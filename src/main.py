@@ -28,7 +28,7 @@ app = FastAPI(lifespan=lifespan)
 @app.get("/.well-known/jwks.json")
 async def get_jwks():
     jwks: JWKS = build_jwks()
-    return jwks
+    return jwks.model_dump(exclude_none=True)
 
 
 @app.post("/register")
