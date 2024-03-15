@@ -9,6 +9,7 @@ it should provide:
  - [x] a .well_known endpoint display public key
  - [x] usage of asymetric encryption to let third parties be able to verify issued tokens
  - [x] a delete account endpoint for account deletion. 
+ - [ ] a basic usage example
  - [ ] add sourcery to the mix
 
 # bonus
