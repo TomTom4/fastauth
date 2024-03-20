@@ -1,5 +1,5 @@
-# free-auth
-a free authentication and authorization server
+# FastAuth
+a free authentication and authorization server, based on FastApi, SQLModel and jwcrypto.
 
 
 ## Generate key pair
