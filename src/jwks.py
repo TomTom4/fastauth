@@ -2,6 +2,9 @@ from typing import Optional, List, Literal, Union
 from pydantic import BaseModel, HttpUrl, Field
 from jwcrypto import jwk
 import json
+from src.configurations import Settings
+
+settings: Settings = Settings()
 
 
 class JWK(BaseModel):
@@ -58,7 +61,7 @@ class JWKS(BaseModel):
 
 
 def build_jwks() -> JWKS:
-    with open("public.pem", "rb") as pemfile:
+    with open(settings.public_key, "rb") as pemfile:
         key = jwk.JWK.from_pem(pemfile.read())
     eliptic_jwk: ElipticCurveJWK = ElipticCurveJWK.model_validate(
         json.loads(key.export())
