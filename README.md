@@ -1,6 +1,8 @@
 # FastAuth
 a free authentication and authorization server, based on FastApi, SQLModel and jwcrypto.
 
+> Warning /!\: this is an early stage, do not use in production 
+
 ## Install locally
  Here below you
 will find basic guidelines to install it on your system, and be able to play with it.
