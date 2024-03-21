@@ -1,9 +1,15 @@
 site_name: Free Auth (FastAuth?)
+docs_dir: documentation 
 theme: 
   name: material
+  features:
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
   palette:
     primary: amber
 nav:
   - Home: index.md
   - Usage: usage.md
 
+site_dir: docs
