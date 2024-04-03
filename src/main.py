@@ -32,7 +32,7 @@ async def get_jwks():
     return jwks.model_dump(exclude_none=True)
 
 
-@app.post("/register")
+@app.post("/register", response_model=User)
 async def register(user: User, session: Annotated[Session, Depends(get_session)]):
     hashed_password = get_password_hash(user.password_hash)
     user.password_hash = hashed_password
