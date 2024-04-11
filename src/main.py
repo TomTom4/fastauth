@@ -8,7 +8,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
 from src.database import create_db_and_tables
 from src.dependencies import get_session, get_current_user
-from src.models import User
+from src.models import User, InUser, OutUser
 from src.schemas import Token
 from src.logic import create_access_token, verify_password, get_password_hash
 from src.configurations import Settings
@@ -32,14 +32,15 @@ async def get_jwks():
     return jwks.model_dump(exclude_none=True)
 
 
-@app.post("/register", response_model=User)
-async def register(user: User, session: Annotated[Session, Depends(get_session)]):
-    hashed_password = get_password_hash(user.password_hash)
+@app.post("/register", response_model=OutUser)
+async def register(user: InUser, session: Annotated[Session, Depends(get_session)]):
+    hashed_password = get_password_hash(user.password)
     user.password_hash = hashed_password
     try:
-        session.add(user)
+        db_user = User.model_validate(user)
+        session.add(db_user)
         session.commit()
-        session.refresh(user)
+        session.refresh(db_user)
         return user
     except IntegrityError:
         raise HTTPException(status_code=409, detail="User already exists")
