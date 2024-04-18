@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
 from sqlmodel import Session, select
 from sqlalchemy.exc import IntegrityError
@@ -25,6 +26,15 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+origins = ['http://localhost']
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/.well-known/jwks.json")
 async def get_jwks():
