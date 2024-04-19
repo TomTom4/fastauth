@@ -26,7 +26,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-origins = ['http://localhost']
+origins = ['http://localhost:5173']
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,13 +45,12 @@ async def get_jwks():
 @app.post("/register", response_model=OutUser)
 async def register(user: InUser, session: Annotated[Session, Depends(get_session)]):
     hashed_password = get_password_hash(user.password)
-    user.password_hash = hashed_password
     try:
-        db_user = User.model_validate(user)
+        db_user = User(username=user.email, password_hash=hashed_password)
         session.add(db_user)
         session.commit()
         session.refresh(db_user)
-        return user
+        return OutUser(id=db_user.id, email=db_user.username)
     except IntegrityError:
         raise HTTPException(status_code=409, detail="User already exists")
 

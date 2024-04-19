@@ -15,5 +15,5 @@ class InUser(SQLModel):
 
 
 class OutUser(SQLModel):
-    id: int
+    id: Optional[int]
     email: EmailStr
