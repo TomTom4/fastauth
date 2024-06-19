@@ -4,12 +4,12 @@ from src.models import User
 
 
 def test_register_new_user(client: TestClient, session: Session):
-    user_as_dict = {"username": "mail@example.com", "password_hash": "test1"}
+    user_as_dict = {"email": "mail@example.com", "password": "test1"}
     response = client.post("/register", json=user_as_dict)
     assert response.status_code == 200
     data = response.json()
-    assert data["username"] == user_as_dict["username"]
-    statement = select(User).where(User.username == user_as_dict["username"])
+    assert data["email"] == user_as_dict["email"]
+    statement = select(User).where(User.username == user_as_dict["email"])
     user = session.exec(statement).first()
     assert user
 
