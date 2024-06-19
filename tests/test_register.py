@@ -15,9 +15,9 @@ def test_register_new_user(client: TestClient, session: Session):
 
 
 def test_register_existing_user(client: TestClient, session: Session):
-    user_as_dict = {"username": "mail@example.com", "password_hash": "test1"}
+    user_as_dict = {"email": "mail@example.com", "password": "test1"}
     user = User(
-        username=user_as_dict["username"], password_hash=user_as_dict["password_hash"]
+        username=user_as_dict["email"], password_hash=user_as_dict["password"]
     )
     session.add(user)
     session.commit()
